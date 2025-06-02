@@ -26,6 +26,9 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: eu-west-1
+          
+      - name: Debug AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Upload to S3
         run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
